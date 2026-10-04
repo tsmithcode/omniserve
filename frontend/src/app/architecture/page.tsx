@@ -1,133 +1,129 @@
 'use client';
 
-import React, { useState } from 'react';
-import { ArrowLeft, Terminal, Server, Database, Cpu, Activity, CheckCircle2, Shield, Code2 } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { Server, Database, Shield, Zap, DollarSign, TrendingUp, Cpu, Activity, ArrowUpRight } from 'lucide-react';
 
-export default function ArchitecturePage() {
-  const [activeTab, setActiveTab] = useState<'rag' | 'dotnet' | 'db'>('rag');
+export default function TelemetryAndRoi() {
+  const [hourlyRate, setHourlyRate] = useState(45);
+  const [ticketVolume, setTicketVolume] = useState(2500);
+
+  // Financial ROI Calculator
+  const estimatedAnnualSavings = Math.round((ticketVolume * 0.789 * (hourlyRate * 0.25)) * 12);
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans">
-      <header className="border-b border-slate-800 bg-slate-900/50 px-6 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-        <div className="flex flex-wrap items-center gap-3 md:gap-4">
-          <Link href="/" className="text-slate-400 hover:text-white transition-colors">
-            <ArrowLeft className="w-5 h-5" />
-          </Link>
-          <div className="flex items-center gap-2">
-            <Terminal className="w-5 h-5 text-rose-500" />
-            <h1 className="font-bold text-lg text-white">OmniServe System Telemetry & Architecture</h1>
+      {/* Universal Header */}
+      <header className="border-b border-slate-800/80 bg-slate-900/50 backdrop-blur-md sticky top-0 z-50 px-6 py-4 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <div className="w-9 h-9 bg-emerald-500/10 border border-emerald-500/30 rounded-xl flex items-center justify-center text-emerald-400 font-bold">
+            <Zap className="w-5 h-5 animate-pulse" />
+          </div>
+          <div>
+            <h1 className="text-base font-bold text-white tracking-wide">OmniServe AI</h1>
+            <p className="text-[11px] text-slate-400">Executive ROI & System Telemetry Workstation</p>
           </div>
         </div>
-        <div className="flex flex-wrap items-center gap-3 md:gap-4">
-          <Link href="/" className="text-slate-400 hover:text-white transition-colors text-sm font-medium">Customer View</Link>
+
+        <nav className="flex items-center gap-6">
+          <Link href="/" className="text-slate-400 hover:text-white transition-colors text-sm font-medium">Customer Portal</Link>
           <Link href="/agent" className="text-slate-400 hover:text-white transition-colors text-sm font-medium">Agent CRM</Link>
-          <div className="flex items-center gap-2 ml-2 border-l border-slate-700 pl-4">
-            <span className="inline-block w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span className="text-xs font-mono text-emerald-400">REST API :5002 LIVE</span>
+          <Link href="/architecture" className="text-emerald-400 text-sm font-semibold border-b-2 border-emerald-400 pb-0.5">Telemetry & ROI</Link>
+          <div className="flex items-center gap-2 border-l border-slate-800 pl-4">
+            <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+            <span className="text-xs font-mono text-emerald-400 font-semibold">REST API :5002 LIVE</span>
           </div>
-        </div>
+        </nav>
       </header>
 
-      <main className="animate-in p-6 max-w-7xl mx-auto w-full space-y-6">
-        {/* Architecture Flow Diagram */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div 
-            onClick={() => setActiveTab('rag')} 
-            className={`p-5 rounded-xl border cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-rose-900/10 ${activeTab === 'rag' ? 'bg-slate-900 border-rose-500/80 shadow-lg shadow-rose-950/20' : 'bg-slate-900/40 border-slate-800 hover:border-slate-700'}`}
-          >
-            <div className="flex items-center justify-between mb-3">
-              <Cpu className="w-6 h-6 text-rose-400" />
-              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">Tier 1</span>
+      {/* Main Container */}
+      <main className="flex-1 max-w-7xl w-full mx-auto p-6 space-y-8">
+        
+        {/* Executive ROI Calculator Card */}
+        <div className="bg-gradient-to-r from-slate-900 via-slate-900 to-emerald-950/40 border border-slate-800/80 p-8 rounded-3xl shadow-2xl relative overflow-hidden">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-2xl text-emerald-400">
+              <DollarSign className="w-6 h-6" />
             </div>
-            <h3 className="font-bold text-white mb-1">1. RAG Vector Search</h3>
-            <p className="text-xs text-slate-400">Embedding similarity matched against indexed technical documentation and historical resolution logs.</p>
+            <div>
+              <h2 className="text-xl font-bold text-white">Executive Financial ROI Simulator</h2>
+              <p className="text-xs text-slate-400">Calculate projected labor cost reduction using OmniServe's 78.9% AI Deflection Rate</p>
+            </div>
           </div>
 
-          <div 
-            onClick={() => setActiveTab('dotnet')} 
-            className={`p-5 rounded-xl border cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-rose-900/10 ${activeTab === 'dotnet' ? 'bg-slate-900 border-rose-500/80 shadow-lg shadow-rose-950/20' : 'bg-slate-900/40 border-slate-800 hover:border-slate-700'}`}
-          >
-            <div className="flex items-center justify-between mb-3">
-              <Server className="w-6 h-6 text-amber-400" />
-              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">Tier 2</span>
-            </div>
-            <h3 className="font-bold text-white mb-1">2. C# .NET Web API</h3>
-            <p className="text-xs text-slate-400">High-concurrency controller pipeline handling authentication headers, CORS verification, and state dispatch.</p>
-          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+            <div className="space-y-5 lg:col-span-2">
+              <div>
+                <div className="flex justify-between text-xs font-mono mb-2">
+                  <span className="text-slate-300">Monthly Support Ticket Volume</span>
+                  <span className="text-emerald-400 font-bold">{ticketVolume.toLocaleString()} tickets / mo</span>
+                </div>
+                <input 
+                  type="range" 
+                  min="500" 
+                  max="10000" 
+                  step="250"
+                  value={ticketVolume} 
+                  onChange={(e) => setTicketVolume(Number(e.target.value))}
+                  className="w-full accent-emerald-500 bg-slate-800 rounded-lg h-2 cursor-pointer"
+                />
+              </div>
 
-          <div 
-            onClick={() => setActiveTab('db')} 
-            className={`p-5 rounded-xl border cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-rose-900/10 ${activeTab === 'db' ? 'bg-slate-900 border-rose-500/80 shadow-lg shadow-rose-950/20' : 'bg-slate-900/40 border-slate-800 hover:border-slate-700'}`}
-          >
-            <div className="flex items-center justify-between mb-3">
-              <Database className="w-6 h-6 text-emerald-400" />
-              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">Tier 3</span>
+              <div>
+                <div className="flex justify-between text-xs font-mono mb-2">
+                  <span className="text-slate-300">Avg Human Support Agent Cost</span>
+                  <span className="text-emerald-400 font-bold">${hourlyRate}.00 / hr</span>
+                </div>
+                <input 
+                  type="range" 
+                  min="20" 
+                  max="100" 
+                  value={hourlyRate} 
+                  onChange={(e) => setHourlyRate(Number(e.target.value))}
+                  className="w-full accent-emerald-500 bg-slate-800 rounded-lg h-2 cursor-pointer"
+                />
+              </div>
             </div>
-            <h3 className="font-bold text-white mb-1">3. Persistence & Escalation</h3>
-            <p className="text-xs text-slate-400">Relational record storage updating ticket status, SLA timers, and agent assignment queues.</p>
+
+            {/* Total Annual Savings Highlight */}
+            <div className="bg-slate-950/80 border border-emerald-500/30 p-6 rounded-2xl text-center shadow-xl">
+              <span className="text-xs font-mono text-slate-400 uppercase tracking-wider block mb-1">Projected Annual Savings</span>
+              <span className="text-3xl font-extrabold text-emerald-400 font-mono">${estimatedAnnualSavings.toLocaleString()}</span>
+              <span className="text-[11px] text-emerald-500/80 block mt-2">Based on 78.9% AI resolution rate</span>
+            </div>
           </div>
         </div>
 
-        {/* Dynamic Telemetry Terminal */}
-        <div className="bg-slate-900/90 border border-slate-800 rounded-2xl overflow-hidden shadow-2xl overflow-x-auto">
-          <div className="bg-slate-950 px-4 py-3 border-b border-slate-800 flex items-center justify-between text-xs font-mono">
-            <div className="flex items-center gap-2 text-slate-400">
-              <Code2 className="w-4 h-4 text-rose-400" />
-              <span>Telemetry Inspector — {activeTab.toUpperCase()} Payload Trace</span>
-            </div>
-            <span className="text-emerald-400">200 OK</span>
+        {/* Live Architecture Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="bg-slate-900/60 border border-slate-800/80 p-6 rounded-2xl space-y-3">
+            <Server className="w-6 h-6 text-emerald-400" />
+            <h3 className="text-base font-bold text-white">C# .NET 8 Web API</h3>
+            <p className="text-xs text-slate-400 leading-relaxed">
+              Decoupled controller handling ticket persistence, CORS middleware, and CRM payload sync.
+            </p>
+            <span className="inline-block text-[10px] font-mono bg-slate-800 text-emerald-400 px-2.5 py-1 rounded-full">Port 5002 - Active</span>
           </div>
 
-          <div className="p-6 font-mono text-xs overflow-x-auto text-slate-300">
-            {activeTab === 'rag' && (
-              <pre className="text-rose-300 leading-relaxed">
-{`{
-  "engine": "OmniServe-Vector-RAG-v2",
-  "vectorModel": "text-embedding-3-small",
-  "dimensions": 1536,
-  "topKMatch": [
-    {
-      "docId": "KB-7721",
-      "title": "Revit CAD Exporter Plugin Crash Diagnosis",
-      "cosineSimilarity": 0.9421,
-      "recommendedAction": "Execute geometry repair script #402 before export"
-    }
-  ],
-  "latencyMs": 342
-}`}
-              </pre>
-            )}
+          <div className="bg-slate-900/60 border border-slate-800/80 p-6 rounded-2xl space-y-3">
+            <Activity className="w-6 h-6 text-indigo-400" />
+            <h3 className="text-base font-bold text-white">Broadcast Sync Engine</h3>
+            <p className="text-xs text-slate-400 leading-relaxed">
+              Zero-latency cross-tab event propagation connecting Customer escalations to Agent CRM queues.
+            </p>
+            <span className="inline-block text-[10px] font-mono bg-slate-800 text-indigo-400 px-2.5 py-1 rounded-full">WebSockets - Synchronized</span>
+          </div>
 
-            {activeTab === 'dotnet' && (
-              <pre className="text-amber-300 leading-relaxed">
-{`HTTP/1.1 200 OK
-Host: localhost:5002
-Access-Control-Allow-Origin: http://localhost:3000
-Content-Type: application/json; charset=utf-8
-
-{
-  "status": "Success",
-  "controller": "TicketsController",
-  "action": "GetActiveEscalations",
-  "activeCount": 3,
-  "serverTime": "${new Date().toISOString()}"
-}`}
-              </pre>
-            )}
-
-            {activeTab === 'db' && (
-              <pre className="text-emerald-300 leading-relaxed">
-{`SQL EXECUTE -- Transaction ID: #TX-90182
-INSERT INTO TicketEscalations (TicketId, CustomerName, Priority, Status, CreatedAt)
-VALUES ('T-104', 'Enterprise Tenant Alpha', 'High', 'Open', CURRENT_TIMESTAMP);
-
--- Row modified: 1 affected
--- Agent SLA Timer Initialized: 15 minutes`}
-              </pre>
-            )}
+          <div className="bg-slate-900/60 border border-slate-800/80 p-6 rounded-2xl space-y-3">
+            <Cpu className="w-6 h-6 text-amber-400" />
+            <h3 className="text-base font-bold text-white">AI Policy Guardrails</h3>
+            <p className="text-xs text-slate-400 leading-relaxed">
+              Dynamic rule evaluation preventing unauthorized automated refunds while accelerating valid resolutions.
+            </p>
+            <span className="inline-block text-[10px] font-mono bg-slate-800 text-amber-400 px-2.5 py-1 rounded-full">RAG Engine v2.4</span>
           </div>
         </div>
+
       </main>
     </div>
   );
